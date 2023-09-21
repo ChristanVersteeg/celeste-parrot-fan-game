@@ -6,11 +6,14 @@ public class Strawberry : MonoBehaviour
 {
     public static Action onPickUp;
     private new AudioSource audio;
+    private Animator animator;
     private bool started;
+    new string Destroy = nameof(Destroy);
 
     private void Start()
     {
         audio = GetComponent<AudioSource>();
+        animator = GetComponent<Animator>();
         audio.volume = 0.1f;
     }
 
@@ -24,7 +27,8 @@ public class Strawberry : MonoBehaviour
 
         started = true;
 
-        GetComponent<SpriteRenderer>().enabled = false;
+        animator.SetBool("Destroy", true);
+
         GetComponent<BoxCollider2D>().enabled = false;
 
         yield return new WaitWhile(() => audio.isPlaying);
