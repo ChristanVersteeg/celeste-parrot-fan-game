@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class BackgroundManager : MonoBehaviour
 {
-    private Vector3 scrollSpeed = new(-0.01f, 0, 0);
     [SerializeField] private SpriteRenderer[] renderers;
     [SerializeField] private Sprite[] bgs;
     private int bgIndex, bgTransitionCount;
@@ -24,9 +23,9 @@ public class BackgroundManager : MonoBehaviour
 
     private void Start() => UpdateBackground();
 
-    private void Update()
+    private void FixedUpdate()
     {
-        transform.position += scrollSpeed;
+        transform.position += GridMovement.scrollSpeed;
 
         if (transform.position.x * -1 >= renderers[parent].size.x)
         {

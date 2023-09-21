@@ -4,7 +4,7 @@ using static UnityEngine.Vector3;
 
 public class Movement : MonoBehaviour
 {
-    private int speed = 100;
+    public int speed = 10;
     private Vector3 direction;
 
     private void Move(KeyCode key, Vector3 direction)
@@ -13,7 +13,7 @@ public class Movement : MonoBehaviour
             this.direction += direction / speed;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         direction = zero;
 
