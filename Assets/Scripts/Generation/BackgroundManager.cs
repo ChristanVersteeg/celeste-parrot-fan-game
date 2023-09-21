@@ -13,8 +13,7 @@ public class BackgroundManager : MonoBehaviour
     {
         foreach (SpriteRenderer renderer in renderers)
             renderer.sprite = bgs[bgIndex];
-        renderers[child].transform.position = Vector3.zero;
-        renderers[child].transform.position += new Vector3(renderers[parent].size.x, 0);
+        renderers[child].transform.position = new Vector3(renderers[parent].size.x, 0);
     }
 
     private void ChangeBackground()
