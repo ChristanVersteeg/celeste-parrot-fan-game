@@ -353,6 +353,7 @@ PlayerSettings:
   switchSocketConcurrencyLimit: 14
   switchScreenResolutionBehavior: 2
   switchUseCPUProfiler: 0
+  switchEnableFileSystemTrace: 0
   switchUseGOLDLinker: 0
   switchLTOSetting: 0
   switchApplicationID: 0x01004b9000490000
@@ -700,11 +701,11 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 0
   windowsGamepadBackendHint: 0
-  cloudProjectId: 
+  cloudProjectId: 83903131-f2f4-4b21-b079-2d0b82c50819
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: 
-  organizationId: 
+  projectName: Celeste Parrot Fan Game
+  organizationId: ter112
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}
