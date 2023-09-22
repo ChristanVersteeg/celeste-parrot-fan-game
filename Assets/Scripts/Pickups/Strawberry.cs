@@ -4,6 +4,7 @@ using System.Collections;
 
 public class Strawberry : MonoBehaviour
 {
+    public static string name;
     public static Action onPickUp;
     private new AudioSource audio;
     private Animator animator;
@@ -12,15 +13,16 @@ public class Strawberry : MonoBehaviour
 
     private void Start()
     {
+        name = gameObject.name;
         audio = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
         audio.volume = 0.1f;
     }
 
-    private IEnumerator HandleCollision() 
+    private IEnumerator HandleCollision()
     {
         if (started) yield break;
-        
+
         onPickUp?.Invoke();
 
         audio.Play();
