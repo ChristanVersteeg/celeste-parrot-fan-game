@@ -4,20 +4,19 @@ using UnityEngine;
 public class ShowBerryCount : MonoBehaviour
 {
     private TextMeshProUGUI text;
-    private int totalStrawberries;
+    private int strawberries;
 
     void Start()
     {
-        totalStrawberries = Strawberry.count + PlayerPrefs.GetInt("StrawberryCount", totalStrawberries);
+        strawberries = PlayerPrefs.GetInt("StrawberryCount");
         text = GetComponent<TextMeshProUGUI>();
-        text.text = $"X {totalStrawberries}";
+        text.text = $"X {strawberries}";
     }
 
     private void OnDisable()
     {
-        PlayerPrefs.SetInt("StrawberryCount", totalStrawberries);
+        PlayerPrefs.SetInt("StrawberryCount", strawberries);
         PlayerPrefs.Save();
-        Strawberry.count = 0;
     }
 
     void Update()

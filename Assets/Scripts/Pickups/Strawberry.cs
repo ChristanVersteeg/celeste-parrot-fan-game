@@ -5,7 +5,6 @@ using System.Collections;
 public class Strawberry : MonoBehaviour
 {
     public static int count;
-    public static Action onPickUp;
     private new AudioSource audio;
     private Animator animator;
     private bool started;
@@ -23,9 +22,10 @@ public class Strawberry : MonoBehaviour
     {
         if (started) yield break;
 
+        print("here");
         count++;
-
-        onPickUp?.Invoke();
+        print("there");
+        print(count);
 
         audio.Play();
 
