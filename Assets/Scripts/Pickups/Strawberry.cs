@@ -4,7 +4,7 @@ using System.Collections;
 
 public class Strawberry : MonoBehaviour
 {
-    public static string name;
+    public static int count;
     public static Action onPickUp;
     private new AudioSource audio;
     private Animator animator;
@@ -22,6 +22,8 @@ public class Strawberry : MonoBehaviour
     private IEnumerator HandleCollision()
     {
         if (started) yield break;
+
+        count++;
 
         onPickUp?.Invoke();
 
