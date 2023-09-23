@@ -31,7 +31,7 @@ public class Movement : MonoBehaviour
             {
                 this.direction += direction / speed;
             }
-            else
+            else if(LevelManager.moveGrid)
             {
                 this.direction += direction / speed * 2.5f;
             }
