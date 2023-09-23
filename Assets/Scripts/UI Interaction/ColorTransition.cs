@@ -1,7 +1,6 @@
 using UnityEngine;
 using TMPro;
 using System.Collections;
-using UnityEngine.SceneManagement;
 
 public class ColorTransition : MonoBehaviour
 {
@@ -10,13 +9,14 @@ public class ColorTransition : MonoBehaviour
     private float colorChangeDelay = 0.25f; // Delay between each character color change
     private float nextColorChangeTime;
     private Coroutine transitionCoroutine;
-    private bool collisionState, nextSceneLoading;
+    private bool collisionState;
+    private MenuCommands menu;
+    private MenuCommands.MenuOptions option;
 
     private IEnumerator RunTransition()
     {
         yield return new WaitForSeconds(colorChangeDelay * text.textInfo.characterCount);
-        nextSceneLoading = true;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        menu.RunOption(option);
     }
 
     private IEnumerator ResetColor()
@@ -47,12 +47,13 @@ public class ColorTransition : MonoBehaviour
     private void Start()
     {
         text = GetComponent<TMP_Text>();
+        menu = FindObjectOfType<MenuCommands>();
+        option = GetComponent<Type>().option;
     }
 
-    private void OnCollisionEnter2D()
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         collisionState = true;
-
         transitionCoroutine = StartCoroutine(RunTransition());
     }
 
@@ -63,7 +64,7 @@ public class ColorTransition : MonoBehaviour
         StopCoroutine(transitionCoroutine);
         transitionCoroutine = null;
 
-        if (!nextSceneLoading)
+        if (!MenuCommands.nextSceneLoading && isActiveAndEnabled)
             StartCoroutine(ResetColor());
     }
 
