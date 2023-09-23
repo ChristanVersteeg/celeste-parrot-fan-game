@@ -7,11 +7,11 @@ public class BerryCount : MonoBehaviour
 
     private void OnEnable()
     {
-        text.GetComponent<TextMeshProUGUI>();
+        text = GetComponent<TextMeshProUGUI>();
         Upgrades.onUpgrade += UpdateText;
     }
 
-    private void UpdateText(int count)
+    private void UpdateText(int count, MenuCommands.MenuOptions _)
     {
         text.text = $"X {count}";
     }

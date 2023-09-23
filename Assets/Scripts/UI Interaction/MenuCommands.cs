@@ -14,12 +14,14 @@ public class MenuCommands : MonoBehaviour
     }
 
     public enum MenuOptions 
-    {
+    { 
         Play,
         Settings,
         Credits,
         Exit,
         Back,
+
+        None,
 
         SpeedUpgrade
     }
