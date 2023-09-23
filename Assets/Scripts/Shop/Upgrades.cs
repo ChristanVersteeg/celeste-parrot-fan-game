@@ -31,9 +31,11 @@ public class Upgrades : MonoBehaviour
 
         speed -= 2;
         speedCurrentMax += 1;
-        speedCost += 5;
 
         onBerryChange(strawberries -= speedCost);
+
+        speedCost += 5;
+
         onUpgrade(speedCost, speedCurrentMax, speedMax, MenuCommands.MenuOptions.SpeedUpgrade);
     }
 
