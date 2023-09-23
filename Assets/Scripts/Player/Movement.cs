@@ -31,9 +31,10 @@ public class Movement : MonoBehaviour
             {
                 this.direction += direction / speed;
             }
-            else if(LevelManager.moveGrid)
+            else 
             {
-                this.direction += direction / speed * 2.5f;
+                if (LevelManager.moveGrid) this.direction += direction / speed * 2.5f;
+                else this.direction += direction / speed;
             }
             //renderer.flipX = flipX;
             //haloPos.localPosition = new Vector3(flipX ? -haloPos.localPosition.x : Mathf.Abs(haloPos.localPosition.x), haloPos.localPosition.y);
