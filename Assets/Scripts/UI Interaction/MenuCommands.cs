@@ -11,6 +11,7 @@ public class MenuCommands : MonoBehaviour
     private void Start()
     {
         upgrades = GetComponent<Upgrades>();
+        Time.timeScale = 1.0f; 
     }
 
     public enum MenuOptions 

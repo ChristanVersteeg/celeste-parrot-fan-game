@@ -5,17 +5,22 @@ using UnityEngine.SceneManagement;
 public class Collision : MonoBehaviour
 {
     public static Action onCollision;
-    private bool hailMary;
+
+    public bool hailMary;
+
     private void Start()
     {
-        hailMary = PlayerPrefs.GetInt(nameof(hailMary)) != 0;
+        hailMary = PlayerPrefs.GetInt("hailMary") != 0;
+        transform.GetChild(0).gameObject.SetActive(hailMary);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Strawberry")) return;
-        if (SceneManager.GetActiveScene().buildIndex != 1 || hailMary) return;
+        if (SceneManager.GetActiveScene().buildIndex != 1) return;
         onCollision();
+
+        if (hailMary) return;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }
