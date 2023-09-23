@@ -16,7 +16,6 @@ public class SoundManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Debug.Log("current clip: " + currentClipIndex);
         if (!audioSource.isPlaying && currentClipIndex == 0) //switch from starting script to next
         {
             // Switch to the next audio clip
