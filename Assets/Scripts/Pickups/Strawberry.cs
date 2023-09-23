@@ -1,16 +1,16 @@
 using UnityEngine;
-using System;
 using System.Collections;
 
 public class Strawberry : MonoBehaviour
 {
     public static int count;
+    [HideInInspector] public int incrementor = 1;
     private new AudioSource audio;
     private Animator animator;
     private bool started;
     new string Destroy = nameof(Destroy);
 
-    private void Start()
+    protected virtual void Start()
     {
         name = gameObject.name;
         audio = GetComponent<AudioSource>();
@@ -22,7 +22,7 @@ public class Strawberry : MonoBehaviour
     {
         if (started) yield break;
 
-        count++;
+        count += incrementor;
 
         audio.Play();
 
