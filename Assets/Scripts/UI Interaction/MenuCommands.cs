@@ -48,6 +48,9 @@ public class MenuCommands : MonoBehaviour
             case MenuOptions.SpeedUpgrade:
                 upgrades.UpgradeSpeed();
                 break;
+            case MenuOptions.HailMary:
+                upgrades.HailMary();
+                break;
             default:
                 break;
         }

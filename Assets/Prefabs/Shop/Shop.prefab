@@ -3071,6 +3071,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6d50cce61e18974697e6bf88904b632, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  options: 0
 --- !u!1 &8794300211467019221
 GameObject:
   m_ObjectHideFlags: 0
@@ -72250,6 +72251,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1901054028209600916}
     m_Modifications:
+    - target: {fileID: 5836800250587368698, guid: 2071344985fe42442a58395e60c422f2, type: 3}
+      propertyPath: options
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 6067272927795464335, guid: 2071344985fe42442a58395e60c422f2, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -72338,7 +72343,8 @@ PrefabInstance:
       propertyPath: option
       value: 6
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8639796935137599926, guid: 2071344985fe42442a58395e60c422f2, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -72359,6 +72365,14 @@ PrefabInstance:
     - target: {fileID: 617498117767215465, guid: 2071344985fe42442a58395e60c422f2, type: 3}
       propertyPath: m_SizeDelta.x
       value: 2.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 5031968141091885632, guid: 2071344985fe42442a58395e60c422f2, type: 3}
+      propertyPath: m_Size.x
+      value: 2.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 5836800250587368698, guid: 2071344985fe42442a58395e60c422f2, type: 3}
+      propertyPath: options
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6067272927795464335, guid: 2071344985fe42442a58395e60c422f2, type: 3}
       propertyPath: m_Pivot.x
@@ -72444,6 +72458,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hail Mary
       objectReference: {fileID: 0}
+    - target: {fileID: 8639796935137599926, guid: 2071344985fe42442a58395e60c422f2, type: 3}
+      propertyPath: option
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 8859153229533331754, guid: 2071344985fe42442a58395e60c422f2, type: 3}
       propertyPath: m_text
       value: Hail Mary
@@ -72452,7 +72470,8 @@ PrefabInstance:
       propertyPath: m_HorizontalAlignment
       value: 2
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8639796935137599926, guid: 2071344985fe42442a58395e60c422f2, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
