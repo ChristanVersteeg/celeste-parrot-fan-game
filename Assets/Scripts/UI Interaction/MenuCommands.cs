@@ -25,7 +25,8 @@ public class MenuCommands : MonoBehaviour
         None,
 
         SpeedUpgrade,
-        HailMary
+        HailMary,
+        GoldenBerry
     }
 
     public void RunOption(MenuOptions options) 

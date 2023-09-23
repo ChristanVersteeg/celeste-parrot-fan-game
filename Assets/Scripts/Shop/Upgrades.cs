@@ -5,6 +5,8 @@ public class Upgrades : MonoBehaviour
 {
     private int speed, speedCost, speedCurrentMax, speedMax = 5;
     private int hailMary, hailMaryCost, hailMaryCurrentMax, hailMaryMax = 1;
+    private int goldenBerry, goldenBerryCost, goldenBerryCurrentMax, goldenBerryMax = 1;
+
     public static Action<int> onBerryChange;
     public static Action<int, int, int, MenuCommands.MenuOptions> onUpgrade;
     private int strawberries;
@@ -19,6 +21,11 @@ public class Upgrades : MonoBehaviour
         hailMaryCost = PlayerPrefs.GetInt(nameof(hailMaryCost));
         hailMaryCurrentMax = PlayerPrefs.GetInt(nameof(hailMaryCurrentMax));
 
+        hailMary = PlayerPrefs.GetInt(nameof(goldenBerry));
+        hailMaryCost = PlayerPrefs.GetInt(nameof(goldenBerryCost));
+        hailMaryCurrentMax = PlayerPrefs.GetInt(nameof(goldenBerryCurrentMax));
+
+
         if (speedCost == 0) speedCost = 5;
         if (hailMaryCost == 0) hailMaryCost = 25;
 
@@ -30,6 +37,7 @@ public class Upgrades : MonoBehaviour
         onBerryChange(strawberries);
         onUpgrade(speedCost, speedCurrentMax, speedMax, MenuCommands.MenuOptions.SpeedUpgrade);
         onUpgrade(hailMaryCost, hailMaryCurrentMax, hailMaryMax, MenuCommands.MenuOptions.HailMary);
+        onUpgrade(goldenBerry, goldenBerryCurrentMax, goldenBerryMax, MenuCommands.MenuOptions.GoldenBerry);
     }
 
     private void UpdateBerries(int cost)
@@ -51,7 +59,7 @@ public class Upgrades : MonoBehaviour
         onUpgrade(speedCost, speedCurrentMax, speedMax, MenuCommands.MenuOptions.SpeedUpgrade);
     }
 
-    public void HailMary() 
+    public void HailMary()
     {
         if (hailMary == 1) return;
 
@@ -72,6 +80,10 @@ public class Upgrades : MonoBehaviour
         PlayerPrefs.SetInt(nameof(hailMary), hailMary);
         PlayerPrefs.SetInt(nameof(hailMaryCost), hailMaryCost);
         PlayerPrefs.SetInt(nameof(hailMaryCurrentMax), hailMaryCurrentMax);
+
+        PlayerPrefs.SetInt(nameof(goldenBerry), goldenBerry);;
+        PlayerPrefs.SetInt(nameof(goldenBerryCost), goldenBerryCost);
+        PlayerPrefs.SetInt(nameof(goldenBerryCurrentMax), goldenBerryCurrentMax);
 
         PlayerPrefs.SetInt(nameof(strawberries), strawberries);
 
