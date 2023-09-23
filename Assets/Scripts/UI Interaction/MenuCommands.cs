@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -52,6 +51,9 @@ public class MenuCommands : MonoBehaviour
                 break;
             case MenuOptions.HailMary:
                 upgrades.HailMary();
+                break;
+            case MenuOptions.GoldenBerry:
+                upgrades.GoldenBerry();
                 break;
             default:
                 break;

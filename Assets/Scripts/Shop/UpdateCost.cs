@@ -22,7 +22,7 @@ public class UpdateCost : MonoBehaviour
             if (currentmax == max)
                 text.text = "Sold out!";
             else
-                text.text = cost.ToString();
+                 text.text = cost.ToString();
         }
 
         switch (options)
