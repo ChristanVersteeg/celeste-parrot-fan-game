@@ -24,6 +24,7 @@ public class Collision : MonoBehaviour
 
         hailMaryObj.SetActive(false);
         if (hailMary) return;
+        PlayerPrefs.SetInt("totalDeaths", Strawberry.count + PlayerPrefs.GetInt("totalDeaths"));
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }
