@@ -22,10 +22,7 @@ public class Strawberry : MonoBehaviour
     {
         if (started) yield break;
 
-        print("here");
         count++;
-        print("there");
-        print(count);
 
         audio.Play();
 
