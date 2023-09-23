@@ -181,7 +181,7 @@ GameObject:
   - component: {fileID: 7089675945224343239}
   - component: {fileID: 6559852602970089017}
   m_Layer: 0
-  m_Name: Collider Grid
+  m_Name: Collider Grid (Celestial Resort)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

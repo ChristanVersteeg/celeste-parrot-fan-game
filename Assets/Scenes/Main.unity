@@ -336,6 +336,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!19719996 &1098797223 stripped
+TilemapCollider2D:
+  m_CorrespondingSourceObject: {fileID: 6559852602970089017, guid: aea7ae10222e83c4086e1cbaddcc458e, type: 3}
+  m_PrefabInstance: {fileID: 1645769940}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1339790240
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -445,10 +450,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 8591245146305774403, guid: fe2e0f787c737cc408d8c280a9105350, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -484,7 +485,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapColliders:
-  - {fileID: 0}
+  - {fileID: 1098797223}
   - {fileID: 1590520512}
   - {fileID: 1638267324}
   - {fileID: 1994056080}
