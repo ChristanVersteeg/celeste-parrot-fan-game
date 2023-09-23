@@ -6,6 +6,7 @@ public class GridMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (!LevelManager.moveGrid) return;
         transform.position += scrollSpeed;
     }
 }

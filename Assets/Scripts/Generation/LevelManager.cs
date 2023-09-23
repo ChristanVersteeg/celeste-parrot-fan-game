@@ -5,7 +5,7 @@ using UnityEngine.Tilemaps;
 
 public class LevelManager : MonoBehaviour
 {
-    public static bool moveHazards;
+    public static bool moveHazards, moveGrid = true;
     [SerializeField] private TilemapCollider2D[] mapColliders;
 
     // Start is called before the first frame update
@@ -20,17 +20,27 @@ public class LevelManager : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(mapColliders[1].transform.position.x <= 0)
+        if (mapColliders[^1].transform.position.x <= 0)
         {
-            mapColliders[1].enabled = true;
-            mapColliders[0].enabled = false;
+            moveHazards = false;
+            moveGrid = false;
+            mapColliders[^1].enabled = true;
+            mapColliders[^2].enabled = false;
         }
 
-        if (mapColliders[2].transform.position.x <= 0)
+        if (mapColliders[1].transform.position.x <= 0 && mapColliders[2].transform.position.x > 0)
         {
-            moveHazards = true;
-            mapColliders[2].enabled = true;
-            mapColliders[1].enabled = false;
+            mapColliders[0].enabled = false;
+            mapColliders[1].enabled = true;         
         }
+
+        if (mapColliders[2].transform.position.x <= 0 && mapColliders[3].transform.position.x > 0)
+        {
+            moveHazards = true;       
+            mapColliders[1].enabled = false;
+            mapColliders[2].enabled = true;
+        }
+
+
     }
 }
