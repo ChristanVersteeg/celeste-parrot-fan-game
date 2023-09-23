@@ -42,6 +42,7 @@ public class MenuCommands : MonoBehaviour
                 credits.SetActive(true);
                 break;
             case MenuOptions.Exit:
+                Application.Quit();
                 break;
             case MenuOptions.Back:
                 credits.SetActive(false);
