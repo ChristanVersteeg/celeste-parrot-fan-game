@@ -9,4 +9,9 @@ public class GridMovement : MonoBehaviour
         if (!LevelManager.moveGrid) return;
         transform.position += scrollSpeed;
     }
+
+    private void OnDisable()
+    {
+        LevelManager.moveGrid = true;
+    }
 }

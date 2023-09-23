@@ -43,7 +43,10 @@ public class LevelManager : MonoBehaviour
             mapColliders[1].enabled = false;
             mapColliders[2].enabled = true;
         }
+    }
 
-
+    private void OnDisable()
+    {
+        moveHazards = false;
     }
 }

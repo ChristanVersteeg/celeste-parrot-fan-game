@@ -3,22 +3,26 @@ using TMPro;
 public class DisplayStats : MonoBehaviour
 {
     public TextMeshProUGUI statsText; // Reference to the TextMeshPro Text for displaying stats
-    int totalStrawberries;
-
-    private void FixedUpdate()
-    {
-        totalStrawberries = PlayerPrefs.GetInt("totalStrawberries", 0);
-    }
+    int totalStrawberries, totalDeaths;
 
     void Start()
     {
         // Retrieve values from PlayerPrefs
-        int totalDeaths = PlayerPrefs.GetInt("totalDeaths", 0);
+        totalDeaths = PlayerPrefs.GetInt("totalDeaths", 0);
+        totalStrawberries = PlayerPrefs.GetInt("totalStrawberries", 0);
+    }
 
-        // Create a formatted string to display the stats
-        string statsString = "Stats:\nTotal Strawberries: " + totalStrawberries + "\nTotal Deaths: " + totalDeaths;
+    private void FixedUpdate()
+    {
+        if (!LevelManager.moveGrid)
+        {
+            totalStrawberries = PlayerPrefs.GetInt("totalStrawberries", 0);
 
-        // Update the TextMeshPro Text component with the formatted string
-        statsText.text = statsString;
+            // Create a formatted string to display the stats
+            string statsString = "Stats:\nTotal Strawberries: " + totalStrawberries + "\nTotal Deaths: " + totalDeaths;
+
+            // Update the TextMeshPro Text component with the formatted string
+            statsText.text = statsString;
+        }
     }
 }

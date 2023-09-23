@@ -23,7 +23,7 @@ public class Strawberry : MonoBehaviour
         if (started) yield break;
 
         count += incrementor;
-
+        PlayerPrefs.SetInt("totalStrawberries", PlayerPrefs.GetInt("totalStrawberries") + incrementor);
         audio.Play();
 
         started = true;
@@ -33,7 +33,6 @@ public class Strawberry : MonoBehaviour
         GetComponent<BoxCollider2D>().enabled = false;
 
         yield return new WaitWhile(() => audio.isPlaying);
-
         Destroy(gameObject);
     }
 

@@ -23,7 +23,7 @@ public class Collision : MonoBehaviour
         onCollision();
 
         hailMaryObj.SetActive(false);
-        if (hailMary) return;
+        if (hailMary) return;  
         PlayerPrefs.SetInt("totalDeaths", PlayerPrefs.GetInt("totalDeaths") + 1);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
