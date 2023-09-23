@@ -3,48 +3,45 @@ using UnityEngine;
 
 public class Upgrades : MonoBehaviour
 {
-    private int speed, speedCost = 5, speedMax;
-    public static Action<int, MenuCommands.MenuOptions> onUpgrade;
-    public static Action<int, MenuCommands.MenuOptions> onUpgrade1;
+    private int speed, speedCost, speedCurrentMax, speedMax = 5;
+    public static Action<int> onBerryChange;
+    public static Action<int, int, int, MenuCommands.MenuOptions> onUpgrade;
     private int strawberries;
 
     private void OnEnable()
     {
         speed = PlayerPrefs.GetInt(nameof(speed));
         speedCost = PlayerPrefs.GetInt(nameof(speedCost));
-        speedMax = PlayerPrefs.GetInt(nameof(speedMax));
+        speedCurrentMax = PlayerPrefs.GetInt(nameof(speedCurrentMax));
 
-        if (speedCost == 0)
-            speedCost = 5;
+        if (speedCost == 0) speedCost = 5;
+
         strawberries = PlayerPrefs.GetInt(nameof(strawberries));
     }
 
     private void Start()
     {
-        onUpgrade(strawberries, MenuCommands.MenuOptions.None);
-        onUpgrade1(speedCost, MenuCommands.MenuOptions.SpeedUpgrade);
+        onBerryChange(strawberries);
+        onUpgrade(speedCost, speedCurrentMax, speedMax, MenuCommands.MenuOptions.SpeedUpgrade);
     }
 
     public void UpgradeSpeed()
     {
-        if (speedMax == 3 || strawberries < speedCost) return;
+        if (speedCurrentMax == 5 || strawberries < speedCost) return;
 
-        speed -= 5;
-        speedMax += 1;
+        speed -= 2;
+        speedCurrentMax += 1;
+        speedCost += 5;
 
-        onUpgrade(strawberries -= speedCost, MenuCommands.MenuOptions.SpeedUpgrade);
-
-        if (speedMax <= 4)
-            speedCost += 5;
-
-        onUpgrade1(speedCost, MenuCommands.MenuOptions.SpeedUpgrade);
+        onBerryChange(strawberries -= speedCost);
+        onUpgrade(speedCost, speedCurrentMax, speedMax, MenuCommands.MenuOptions.SpeedUpgrade);
     }
 
     private void OnDisable()
     {
         PlayerPrefs.SetInt(nameof(speed), speed);
         PlayerPrefs.SetInt(nameof(speedCost), speedCost);
-        PlayerPrefs.SetInt(nameof(speedMax), speedMax);
+        PlayerPrefs.SetInt(nameof(speedCurrentMax), speedCurrentMax);
 
         PlayerPrefs.SetInt(nameof(strawberries), strawberries);
         PlayerPrefs.Save();

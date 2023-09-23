@@ -1,27 +1,28 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.U2D.IK;
 
 public class UpdateCost : MonoBehaviour
 {
     private TextMeshProUGUI text;
-    private MenuCommands.MenuOptions options;
-    void Start()
+
+    void OnEnable()
     {
         text = GetComponent<TextMeshProUGUI>();
-        options = GetComponent<Type>().option;
-        Upgrades.onUpgrade1 += UpdateCostaRica;
+        Upgrades.onUpgrade += UpdateCosts;
     }
 
-    private void UpdateCostaRica(int cost, MenuCommands.MenuOptions options)
+    private void UpdateCosts(int cost, int currentmax, int max, MenuCommands.MenuOptions options)
     {
-        if (this.options != options) return;
+        switch (options)
+        {
+            case MenuCommands.MenuOptions.SpeedUpgrade:
 
-        if (cost != 15)
-            text.text = $"Speed {cost} X";
-        else 
-            text.text = $"Sold out!";
+                if (currentmax == max)
+                    text.text = "Sold out!";
+                else
+                    text.text = cost.ToString();
+
+                break;
+        }
     }
 }

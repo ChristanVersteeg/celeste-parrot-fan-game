@@ -8,11 +8,11 @@ public class BerryCount : MonoBehaviour
     private void OnEnable()
     {
         text = GetComponent<TextMeshProUGUI>();
-        Upgrades.onUpgrade += UpdateText;
+        Upgrades.onBerryChange += UpdateText;
     }
 
-    private void UpdateText(int count, MenuCommands.MenuOptions _)
+    private void UpdateText(int count)
     {
-        text.text = $"X {count}";
+        text.text = count.ToString();
     }
 }
