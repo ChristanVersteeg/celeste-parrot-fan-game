@@ -4,7 +4,7 @@ public class PickUpManager : MonoBehaviour
 {
     private void OnDisable()
     {
-        PlayerPrefs.SetInt("StrawberryCount", Strawberry.count + PlayerPrefs.GetInt("StrawberryCount"));
+        PlayerPrefs.SetInt("strawberries", Strawberry.count + PlayerPrefs.GetInt("strawberries"));
         PlayerPrefs.Save();
         Strawberry.count = 0;
     }

@@ -5,13 +5,17 @@ using UnityEngine.SceneManagement;
 
 public class Movement : MonoBehaviour
 {
-    private int speed = 25;
+    private const int baseSpeed = 25;
+    private int speed = baseSpeed;
     private Vector3 direction;
     private int activeScene;
     private new SpriteRenderer renderer;
 
     private void Start()
     {
+        speed = baseSpeed;
+        speed += PlayerPrefs.GetInt(nameof(speed));
+
         renderer = GetComponent<SpriteRenderer>();
         activeScene = (SceneManager.GetActiveScene().buildIndex);
         speed = (int)(activeScene != 1 ? speed / 2.5f : speed);

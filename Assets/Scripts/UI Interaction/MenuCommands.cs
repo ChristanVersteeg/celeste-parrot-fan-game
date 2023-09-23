@@ -6,6 +6,12 @@ public class MenuCommands : MonoBehaviour
 {
     public static bool nextSceneLoading;
     [SerializeField] private GameObject credits;
+    private Upgrades upgrades;
+
+    private void Start()
+    {
+        upgrades = GetComponent<Upgrades>();
+    }
 
     public enum MenuOptions 
     {
@@ -13,7 +19,9 @@ public class MenuCommands : MonoBehaviour
         Settings,
         Credits,
         Exit,
-        Back
+        Back,
+
+        SpeedUpgrade
     }
 
     public void RunOption(MenuOptions options) 
@@ -33,6 +41,9 @@ public class MenuCommands : MonoBehaviour
                 break;
             case MenuOptions.Back:
                 credits.SetActive(false);
+                break;
+            case MenuOptions.SpeedUpgrade:
+                upgrades.UpgradeSpeed();
                 break;
             default:
                 break;
