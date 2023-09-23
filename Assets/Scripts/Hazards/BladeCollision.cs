@@ -15,6 +15,8 @@ public class BladeCollision : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (!LevelManager.moveHazards) return;
+
         Vector3 movement = Vector3.zero;
 
         switch (movementState)
