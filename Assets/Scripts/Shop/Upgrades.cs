@@ -29,7 +29,7 @@ public class Upgrades : MonoBehaviour
     {
         onBerryChange(strawberries);
         onUpgrade(speedCost, speedCurrentMax, speedMax, MenuCommands.MenuOptions.SpeedUpgrade);
-        onUpgrade(hailMaryCost, hailMaryCurrentMax, hailMaryMax, MenuCommands.MenuOptions.SpeedUpgrade);
+        onUpgrade(hailMaryCost, hailMaryCurrentMax, hailMaryMax, MenuCommands.MenuOptions.HailMary);
     }
 
     private void UpdateBerries(int cost)
@@ -56,6 +56,7 @@ public class Upgrades : MonoBehaviour
         if (hailMary == 1) return;
 
         hailMary = 1;
+        hailMaryCurrentMax += 1;
 
         UpdateBerries(hailMaryCost);
 
