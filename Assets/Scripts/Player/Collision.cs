@@ -7,11 +7,13 @@ public class Collision : MonoBehaviour
     public static Action onCollision;
 
     public bool hailMary;
+    private GameObject hailMaryObj;
 
     private void Start()
     {
         hailMary = PlayerPrefs.GetInt("hailMary") != 0;
-        transform.GetChild(0).gameObject.SetActive(hailMary);
+        hailMaryObj = transform.GetChild(0).gameObject;
+        hailMaryObj.SetActive(hailMary);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -20,6 +22,7 @@ public class Collision : MonoBehaviour
         if (SceneManager.GetActiveScene().buildIndex != 1) return;
         onCollision();
 
+        hailMaryObj.SetActive(false);
         if (hailMary) return;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
