@@ -7,7 +7,6 @@ public class ItemDescription : MonoBehaviour
 
     [SerializeField] private MenuCommands.MenuOptions item;
 
-
     void Start()
     {
         text = transform.parent.GetChild(0).GetComponent<TextMeshProUGUI>();
