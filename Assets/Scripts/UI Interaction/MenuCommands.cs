@@ -28,7 +28,9 @@ public class MenuCommands : MonoBehaviour
         HailMary,
         GoldenBerry,
 
-        Reset
+        Reset,
+        
+        DashUpgrade
     }
 
     private void ShowCredits(bool show)
@@ -74,6 +76,9 @@ public class MenuCommands : MonoBehaviour
                 break;
             case MenuOptions.Reset:
                 PlayerPrefs.DeleteAll();
+                break;
+            case MenuOptions.DashUpgrade:
+                upgrades.Dash();
                 break;
             default:
                 break;

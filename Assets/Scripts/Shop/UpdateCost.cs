@@ -36,6 +36,9 @@ public class UpdateCost : MonoBehaviour
             case MenuCommands.MenuOptions.GoldenBerry:
                 CheckMax();
                 break;
+            case MenuCommands.MenuOptions.DashUpgrade:
+                CheckMax();
+                break;
             case MenuCommands.MenuOptions.None:
                 print("YOU FORGOT TO ASSIGN THE TYPE YOU DIPSHIT");
                 break;

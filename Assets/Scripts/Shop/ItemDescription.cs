@@ -29,6 +29,9 @@ public class ItemDescription : MonoBehaviour
             case MenuCommands.MenuOptions.GoldenBerry:
                 SetText("Introduces golden berries into the game, these are worth more than normal berries.");
                 break;
+            case MenuCommands.MenuOptions.DashUpgrade:
+                SetText("Gives you dashes, used with space, they speed up the scrolling of the level briefly.");
+                break;
             default:
                 break;
         }

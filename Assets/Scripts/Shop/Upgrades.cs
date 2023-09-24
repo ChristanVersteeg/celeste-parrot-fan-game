@@ -6,6 +6,7 @@ public class Upgrades : MonoBehaviour
     private int speed, speedCost, speedCurrentMax, speedMax = 5;
     private int hailMary, hailMaryCost, hailMaryCurrentMax, hailMaryMax = 1;
     private int goldenBerry, goldenBerryCost, goldenBerryCurrentMax, goldenBerryMax = 2;
+    private int dash, dashCost, dashCurrentMax, dashMax = 5;
 
     public static Action<int> onBerryChange;
     public static Action<int, int, int, MenuCommands.MenuOptions> onUpgrade;
@@ -25,9 +26,14 @@ public class Upgrades : MonoBehaviour
         goldenBerryCost = PlayerPrefs.GetInt(nameof(goldenBerryCost));
         goldenBerryCurrentMax = PlayerPrefs.GetInt(nameof(goldenBerryCurrentMax));
 
+        dash = PlayerPrefs.GetInt(nameof(dash));
+        dashCost = PlayerPrefs.GetInt(nameof(dashCost));
+        dashCurrentMax = PlayerPrefs.GetInt(nameof(dashCurrentMax));
+
         if (speedCost == 0) speedCost = 5;
         if (hailMaryCost == 0) hailMaryCost = 50;
         if (goldenBerryCost == 0) goldenBerryCost = 15;
+        if (dashCost == 0) dashCost = 25;
 
         strawberries = PlayerPrefs.GetInt(nameof(strawberries));
     }
@@ -38,6 +44,7 @@ public class Upgrades : MonoBehaviour
         onUpgrade(speedCost, speedCurrentMax, speedMax, MenuCommands.MenuOptions.SpeedUpgrade);
         onUpgrade(hailMaryCost, hailMaryCurrentMax, hailMaryMax, MenuCommands.MenuOptions.HailMary);
         onUpgrade(goldenBerryCost, goldenBerryCurrentMax, goldenBerryMax, MenuCommands.MenuOptions.GoldenBerry);
+        onUpgrade(dashCost, dashCurrentMax, dashMax, MenuCommands.MenuOptions.DashUpgrade);
     }
 
     private void UpdateBerries(int cost)
@@ -45,9 +52,14 @@ public class Upgrades : MonoBehaviour
         onBerryChange(strawberries -= cost);
     }
 
+    private bool CheckAvailability(int currentMax, int max, int cost) 
+    {
+        return currentMax == max || strawberries < speedCost;
+    }
+
     public void UpgradeSpeed()
     {
-        if (speedCurrentMax == speedMax || strawberries < speedCost) return;
+        if (CheckAvailability(speedCurrentMax, speedMax, speedCost)) return;
 
         speed -= 2;
         speedCurrentMax += 1;
@@ -61,7 +73,7 @@ public class Upgrades : MonoBehaviour
 
     public void HailMary()
     {
-        if (hailMaryCurrentMax == hailMaryMax) return;
+        if (CheckAvailability(hailMaryCurrentMax, hailMaryMax, hailMaryCost)) return;
 
         hailMary = 1;
         hailMaryCurrentMax += 1;
@@ -73,6 +85,8 @@ public class Upgrades : MonoBehaviour
 
     public void GoldenBerry()
     {
+        if (CheckAvailability(goldenBerryCurrentMax, goldenBerryMax, goldenBerryCost)) return;
+
         if (goldenBerryCurrentMax == goldenBerryMax) return;
 
         goldenBerry += 3;
@@ -80,9 +94,23 @@ public class Upgrades : MonoBehaviour
 
         UpdateBerries(goldenBerryCost);
 
-        goldenBerryCost += 20;
+        goldenBerryCost += 10;
 
         onUpgrade(goldenBerryCost, goldenBerryCurrentMax, goldenBerryMax, MenuCommands.MenuOptions.GoldenBerry);
+    }
+
+    public void Dash()
+    {
+        if (CheckAvailability(dashCurrentMax, dashMax, dashCost)) return;
+
+        dash += 3;
+        dashCurrentMax += 1;
+
+        UpdateBerries(dashCost);
+
+        dashCost += 15;
+
+        onUpgrade(dashCost, dashCurrentMax, dashMax, MenuCommands.MenuOptions.DashUpgrade);
     }
 
     private void OnDisable()
@@ -98,6 +126,10 @@ public class Upgrades : MonoBehaviour
         PlayerPrefs.SetInt(nameof(goldenBerry), goldenBerry);;
         PlayerPrefs.SetInt(nameof(goldenBerryCost), goldenBerryCost);
         PlayerPrefs.SetInt(nameof(goldenBerryCurrentMax), goldenBerryCurrentMax);
+
+        PlayerPrefs.SetInt(nameof(dash), dash); ;
+        PlayerPrefs.SetInt(nameof(dashCost), dashCost);
+        PlayerPrefs.SetInt(nameof(dashCurrentMax), dashCurrentMax);
 
         PlayerPrefs.SetInt(nameof(strawberries), strawberries);
 
