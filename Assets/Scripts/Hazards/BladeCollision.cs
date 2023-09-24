@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BladeCollision : MonoBehaviour
 {
+    public int inLevel;
     private enum MovementState
     {
         Vertical,
@@ -22,9 +23,11 @@ public class BladeCollision : MonoBehaviour
         switch (movementState)
         {
             case MovementState.Vertical:
+                if (inLevel != LevelManager.currentLevel) return;
                 movement = new Vector3(0, movementSpeed, 0);
                 break;
             case MovementState.Horizontal:
+                if (inLevel != LevelManager.currentLevel) return;
                 if (movementSpeed > 0) movement = new Vector3(movementSpeed, 0, 0);
                 if (movementSpeed < 0) movement = new Vector3(movementSpeed, 0, 0);
                 break;

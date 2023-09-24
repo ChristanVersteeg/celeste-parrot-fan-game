@@ -33,7 +33,17 @@ public class Movement : MonoBehaviour
             }
             else 
             {
-                if (LevelManager.moveGrid) this.direction += direction / speed * 2.5f;
+                if (LevelManager.moveGrid && LevelManager.moveHorizontal) this.direction += direction / speed * 2.5f;
+                else this.direction += direction / speed;
+            }
+
+            if (SceneManager.GetActiveScene().buildIndex != 1 || direction != down)
+            {
+                this.direction += direction / speed;
+            }
+            else
+            {
+                if (LevelManager.moveGrid && LevelManager.moveVertical) this.direction += direction / speed * 1.75f;
                 else this.direction += direction / speed;
             }
             //renderer.flipX = flipX;
