@@ -27,17 +27,24 @@ public class Movement : MonoBehaviour
     {
         if (Input.GetKey(key))
         {
-            if (SceneManager.GetActiveScene().buildIndex != 1 || direction != left)
+            if (SceneManager.GetActiveScene().buildIndex != 1)
+            {
+                this.direction += direction / speed;
+
+                return;
+            }
+
+            if (direction != left)
             {
                 this.direction += direction / speed;
             }
-            else 
+            else
             {
                 if (LevelManager.moveGrid && LevelManager.moveHorizontal) this.direction += direction / speed * 2.5f;
                 else this.direction += direction / speed;
             }
 
-            if (SceneManager.GetActiveScene().buildIndex != 1 || direction != down)
+            if (direction != down)
             {
                 this.direction += direction / speed;
             }
@@ -46,6 +53,7 @@ public class Movement : MonoBehaviour
                 if (LevelManager.moveGrid && LevelManager.moveVertical) this.direction += direction / speed * 1.75f;
                 else this.direction += direction / speed;
             }
+
             //renderer.flipX = flipX;
             //haloPos.localPosition = new Vector3(flipX ? -haloPos.localPosition.x : Mathf.Abs(haloPos.localPosition.x), haloPos.localPosition.y);
         }
