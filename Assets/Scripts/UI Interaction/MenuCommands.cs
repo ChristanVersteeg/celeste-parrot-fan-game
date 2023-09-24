@@ -26,12 +26,14 @@ public class MenuCommands : MonoBehaviour
 
         SpeedUpgrade,
         HailMary,
-        GoldenBerry
+        GoldenBerry,
+
+        Reset
     }
 
     private void ShowCredits(bool show)
     {
-        T[] ComponentsOfType<T>() => transform.GetChild(4).GetComponentsInChildren<T>();
+        T[] ComponentsOfType<T>() => transform.GetChild(5).GetComponentsInChildren<T>();
         foreach (Image image in ComponentsOfType<Image>())
             image.enabled = show;
         foreach (TextMeshProUGUI text in ComponentsOfType<TextMeshProUGUI>())
@@ -69,6 +71,9 @@ public class MenuCommands : MonoBehaviour
                 break;
             case MenuOptions.GoldenBerry:
                 upgrades.GoldenBerry();
+                break;
+            case MenuOptions.Reset:
+                PlayerPrefs.DeleteAll();
                 break;
             default:
                 break;
