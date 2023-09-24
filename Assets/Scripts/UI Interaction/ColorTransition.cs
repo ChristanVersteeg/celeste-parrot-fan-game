@@ -61,8 +61,11 @@ public class ColorTransition : MonoBehaviour
     {
         collisionState = false;
 
-        StopCoroutine(transitionCoroutine);
-        transitionCoroutine = null;
+        if (transitionCoroutine != null)
+        {
+            StopCoroutine(transitionCoroutine);
+            transitionCoroutine = null;
+        }
 
         if (!MenuCommands.nextSceneLoading && isActiveAndEnabled)
             StartCoroutine(ResetColor());

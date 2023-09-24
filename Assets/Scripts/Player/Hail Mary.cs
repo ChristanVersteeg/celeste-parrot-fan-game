@@ -12,6 +12,8 @@ public class HailMary : MonoBehaviour
 
     private void Hail()
     {
+        if (!collision.hailMary) return;
+
         transform.position = new Vector3(transform.position.x - 2.5f, transform.position.y);
         StartCoroutine(SlowdownEffect());
     }

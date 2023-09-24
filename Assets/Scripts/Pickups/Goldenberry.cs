@@ -2,14 +2,17 @@ using UnityEngine;
 
 public class Goldenberry : Strawberry
 {
+    private int goldenBerry;
+
     private void OnEnable()
     {
-        gameObject.SetActive(PlayerPrefs.GetInt("goldenBerry") != 0);
+        goldenBerry = PlayerPrefs.GetInt("goldenBerry");
+        gameObject.SetActive(goldenBerry != 0);
     }
 
     protected override void Start()
     {
-        incrementor = 5;
+        incrementor = goldenBerry;
         base.Start();
     }
 }
