@@ -5,7 +5,7 @@ using UnityEngine.Tilemaps;
 
 public class LevelManager : MonoBehaviour
 {
-    public static bool moveHazards, moveGrid = true, moveVertical, moveHorizontal= true;
+    public static bool moveHazards, moveGrid = true, moveVertical, moveHorizontal = true, hasBeenSetToVertical;
     [SerializeField] private TilemapCollider2D[] mapColliders;
     private float leftScreenEdge, topScreenEdge;
     public static int currentLevel;
@@ -38,13 +38,13 @@ public class LevelManager : MonoBehaviour
         {
             currentLevel = 1;
             mapColliders[0].enabled = false;
-            mapColliders[1].enabled = true;         
+            mapColliders[1].enabled = true;
         }
 
         if (mapColliders[2].transform.position.x <= 0 && mapColliders[3].transform.position.x > 0) //old site to celestial resort
         {
             currentLevel = 2;
-            moveHazards = true;       
+            moveHazards = true;
             mapColliders[1].enabled = false;
             mapColliders[2].enabled = true;
         }
@@ -55,6 +55,11 @@ public class LevelManager : MonoBehaviour
             moveHazards = true;
             moveHorizontal = false;
             moveVertical = true;
+            if (!hasBeenSetToVertical) 
+            {
+                GridMovement.scrollSpeed = new Vector3(0, GridMovement.baseScrollSpeedY);
+                hasBeenSetToVertical = true;
+            }
             mapColliders[2].enabled = false;
             mapColliders[3].enabled = true;
         }

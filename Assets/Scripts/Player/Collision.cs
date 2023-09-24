@@ -11,7 +11,7 @@ public class Collision : MonoBehaviour
 
     private void Start()
     {
-        hailMary = PlayerPrefs.GetInt("hailMary") != 0;
+        hailMary = PlayerPrefs.GetInt(nameof(hailMary)) != 0;
         hailMaryObj = transform.GetChild(0).gameObject;
         hailMaryObj.SetActive(hailMary);
     }
