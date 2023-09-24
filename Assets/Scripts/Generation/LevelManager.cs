@@ -14,7 +14,7 @@ public class LevelManager : MonoBehaviour
     void Start()
     {
         leftScreenEdge = Camera.main.ScreenToWorldPoint(Vector3.zero).x;
-        topScreenEdge = Camera.main.ScreenToWorldPoint(new Vector3(0, Screen.height, 0)).y;
+        topScreenEdge = Camera.main.ScreenToWorldPoint(new Vector3(0, 400, 0)).y;
 
         for (int i = 1; i < mapColliders.Length; i++)
         {
@@ -58,7 +58,7 @@ public class LevelManager : MonoBehaviour
             mapColliders[2].enabled = false;
             mapColliders[3].enabled = true;
         }
-
+        Debug.Log(mapColliders[4].name);
         if (mapColliders[4].transform.position.y <= topScreenEdge)
         {
             currentLevel = 4;
