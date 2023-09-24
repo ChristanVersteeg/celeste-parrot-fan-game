@@ -9,6 +9,7 @@ public class Movement : MonoBehaviour
     private int speed = baseSpeed;
     private Vector3 direction;
     private int activeScene;
+    [SerializeField] private Rigidbody2D rb;
 
     private void Start()
     {
@@ -63,6 +64,6 @@ public class Movement : MonoBehaviour
         if (direction.magnitude > 1)
             direction.Normalize();
 
-        transform.position += direction;
+        rb.velocity = direction * (0.75f / Time.fixedDeltaTime); //60 is FPS estimate //That's a terrible estimate
     }
 }
