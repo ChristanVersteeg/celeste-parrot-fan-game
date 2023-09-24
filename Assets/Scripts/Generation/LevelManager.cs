@@ -66,6 +66,11 @@ public class LevelManager : MonoBehaviour
         Debug.Log(mapColliders[4].name);
         if (mapColliders[4].transform.position.y <= topScreenEdge)
         {
+            if (hasBeenSetToVertical)
+            {
+                GridMovement.scrollSpeed = new Vector3(GridMovement.baseScrollSpeedX, 0);
+                hasBeenSetToVertical = false;
+            }
             currentLevel = 4;
             moveHazards = false;
             moveHorizontal = true;
