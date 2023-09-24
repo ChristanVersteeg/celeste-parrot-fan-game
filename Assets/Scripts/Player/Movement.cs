@@ -9,53 +9,45 @@ public class Movement : MonoBehaviour
     private int speed = baseSpeed;
     private Vector3 direction;
     private int activeScene;
-    private new SpriteRenderer renderer;
-    private Transform haloPos;
 
     private void Start()
     {
         speed = baseSpeed;
         speed += PlayerPrefs.GetInt(nameof(speed));
 
-        renderer = GetComponent<SpriteRenderer>();
-        haloPos = transform.GetChild(0).GetComponent<Transform>();
-        activeScene = (SceneManager.GetActiveScene().buildIndex);
+        activeScene = SceneManager.GetActiveScene().buildIndex;
         speed = (int)(activeScene != 1 ? speed / 2.5f : speed);
     }
 
-    private void Move(KeyCode key, Vector3 direction, bool flipX = false)
+    private void Move(KeyCode wasdKeys, KeyCode arrowKeys, Vector3 direction)
     {
-        if (Input.GetKey(key))
+        void DefaultSpeed() => this.direction += direction / speed;
+        void RelativeSpeed(bool axis, float speedModifier)
         {
-            if (SceneManager.GetActiveScene().buildIndex != 1)
+            if (LevelManager.moveGrid && axis) this.direction += direction / speed * speedModifier;
+            else DefaultSpeed();
+        }
+
+        if (Input.GetKey(wasdKeys) || Input.GetKey(arrowKeys))
+        {
+            if (activeScene != 1)
             {
-                this.direction += direction / speed;
+                DefaultSpeed();
 
                 return;
             }
 
             if (direction != left)
-            {
-                this.direction += direction / speed;
-            }
+                DefaultSpeed();
             else
             {
-                if (LevelManager.moveGrid && LevelManager.moveHorizontal) this.direction += direction / speed * 2.5f;
-                else this.direction += direction / speed;
+                RelativeSpeed(LevelManager.moveHorizontal, 2.5f);
             }
 
             if (direction != down)
-            {
-                this.direction += direction / speed;
-            }
+                DefaultSpeed();
             else
-            {
-                if (LevelManager.moveGrid && LevelManager.moveVertical) this.direction += direction / speed * 1.75f;
-                else this.direction += direction / speed;
-            }
-
-            //renderer.flipX = flipX;
-            //haloPos.localPosition = new Vector3(flipX ? -haloPos.localPosition.x : Mathf.Abs(haloPos.localPosition.x), haloPos.localPosition.y);
+                RelativeSpeed(LevelManager.moveVertical, 1.75f);
         }
     }
 
@@ -63,10 +55,10 @@ public class Movement : MonoBehaviour
     {
         direction = zero;
 
-        Move(W, up);
-        Move(A, left, true);
-        Move(S, down);
-        Move(D, right);
+        Move(W, UpArrow, up);
+        Move(A, LeftArrow, left);
+        Move(S, DownArrow, down);
+        Move(D, RightArrow, right);
 
         if (direction.magnitude > 1)
             direction.Normalize();
