@@ -83,5 +83,8 @@ public class LevelManager : MonoBehaviour
     private void OnDisable()
     {
         moveHazards = false;
+        moveVertical = false;
+        moveHorizontal = true;
+        hasBeenSetToVertical = false;
     }
 }
