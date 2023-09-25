@@ -2,16 +2,27 @@ Not Doing:
 make a build that can give infinite speed
 upgrade paths routes (mutually exclusive)
 speed sometimes makes it harder
+Maybe some deco ? Or something that tell you in witch chaper you are
+make the gaps in old site slightly more lenient at very high speed upgrades
+its a little bit tight in some spots, maybe make it with scroll options for how fast it goes?
+Procedural generation would be great for replayability, and maybe slightly nerfing the memory section within old site
+
 
 Doing:
-item description
-fix the visual bug that makes it seem like u cant buy multiple items at once in the shop
-Feedback, nerf golden berries
-golden berries upgrade which makes them worth more
-random generated arrow path
-introduction to gameplay
-vertical scroll
+
+
 
 Done:
-lower top hitbox
-hitboxes more lenient
+lower top hitbox/hitboxes more lenient
+nerf golden berries
+golden berries upgrade which makes them worth more
+Fix there no being colliders behind the player, meaning they can go outside the map.
+you could add a really easy part that serves as a tutorial with the same arrows used in the maps.
+vertical scroll
+introduction to gameplay
+fix the visual bug that makes it seem like u cant buy multiple items at once in the shop
+random generated arrow path
+item description
+more upgrades and arrow keys for controls
+Fix being able to clip through walls (with Hail Mary in main, and shop without anything)
+Make text selection scale with the amount of characters
