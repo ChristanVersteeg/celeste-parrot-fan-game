@@ -4,18 +4,31 @@ using UnityEngine;
 public class HailMary : MonoBehaviour
 {
     private Collision collision;
+    private Rigidbody2D rb;
+    private bool hailed;
+    private Vector2 hailMarySpeedX = new(-25f, 0), hailMarySpeedY = new(0, -12.5f);
+
     private void OnEnable()
     {
         Collision.onCollision += Hail;
         collision = GetComponent<Collision>();
+        rb = GetComponent<Rigidbody2D>();
+    }
+
+    private void EnableMovement()
+    {
+        Movement.canMove = true;
+        StartCoroutine(SlowdownEffect());
     }
 
     private void Hail()
     {
         if (!collision.hailMary) return;
-
-        transform.position = new Vector3(transform.position.x - 2.5f, transform.position.y);
-        StartCoroutine(SlowdownEffect());
+        if (hailed) return;
+        Movement.canMove = false;
+        Invoke(nameof(EnableMovement), 0.25f);
+        rb.AddForce(LevelManager.moveHorizontal ? hailMarySpeedX : hailMarySpeedY, ForceMode2D.Impulse);
+        hailed = true;
     }
 
     private IEnumerator SlowdownEffect()

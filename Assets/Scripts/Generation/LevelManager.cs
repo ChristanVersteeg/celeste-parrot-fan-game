@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -10,7 +8,6 @@ public class LevelManager : MonoBehaviour
     private float leftScreenEdge, topScreenEdge;
     public static int currentLevel;
 
-    // Start is called before the first frame update
     void Start()
     {
         leftScreenEdge = Camera.main.ScreenToWorldPoint(Vector3.zero).x;
@@ -22,7 +19,6 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
         if (mapColliders[^1].transform.position.x <= leftScreenEdge)
@@ -63,7 +59,7 @@ public class LevelManager : MonoBehaviour
             mapColliders[2].enabled = false;
             mapColliders[3].enabled = true;
         }
-        Debug.Log(mapColliders[4].name);
+
         if (mapColliders[4].transform.position.y <= topScreenEdge)
         {
             if (hasBeenSetToVertical)

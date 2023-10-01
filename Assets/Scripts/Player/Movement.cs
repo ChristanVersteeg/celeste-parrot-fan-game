@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class Movement : MonoBehaviour
 {
+    public static bool canMove = true;
     private const int baseSpeed = 25;
     private int speed = baseSpeed;
     private Vector3 direction;
@@ -82,16 +83,16 @@ public class Movement : MonoBehaviour
     private void UpdateDash()
     {
         if (activeScene != 1) return;
-        if(!updateDash) return;
+        if (!updateDash) return;
         if (!Input.GetKeyDown(KeyCode.Space)) return;
-        if (dash == 0) 
+        if (dash == 0)
         {
             dashObj.SetActive(false);
             return;
         }
 
         SetScrollSpeeds(dashSpeed, dashSpeed / 2);
-        
+
         dash--;
 
         Invoke(nameof(ResetDashSpeed), 3);
@@ -114,6 +115,7 @@ public class Movement : MonoBehaviour
         if (direction.magnitude > 1)
             direction.Normalize();
 
-        rb.velocity = direction * (0.75f / Time.fixedDeltaTime); //60 is FPS estimate //That's a terrible estimate
+        if (canMove)
+            rb.velocity = direction * (0.75f / Time.fixedDeltaTime);
     }
 }
