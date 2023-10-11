@@ -36,7 +36,7 @@ public class Movement : MonoBehaviour
         void DefaultSpeed() => this.direction += direction / speed;
         void RelativeSpeed(bool axis, float speedModifier)
         {
-            if (LevelManager.moveGrid && axis) this.direction += direction / speed * speedModifier;
+            if ((LevelManager.moveVertical || LevelManager.moveHorizontal) && axis) this.direction += direction / speed * speedModifier;
             else DefaultSpeed();
         }
 

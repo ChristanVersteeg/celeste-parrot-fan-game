@@ -1,86 +1,65 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
 public class LevelManager : MonoBehaviour
 {
-    public static bool moveHazards, moveGrid = true, moveVertical, moveHorizontal = true, hasBeenSetToVertical;
-    [SerializeField] private TilemapCollider2D[] mapColliders;
-    private float leftScreenEdge, topScreenEdge;
+    private LocalLevelManager[] levelManagers; // An array of all LocalLevelManagers.
     public static int currentLevel;
+    private GridMovement gridMovement; // Reference to the GridMovement component.
+
+    public static bool moveHazards; // Boolean to notate if hazards should move.
+    public static bool moveHorizontal; // Boolean to notate if the current movement is horizontal.
+    public static bool moveVertical; // Boolean to notate if the current movement is vertical.
 
     void Start()
     {
-        leftScreenEdge = Camera.main.ScreenToWorldPoint(Vector3.zero).x;
-        topScreenEdge = Camera.main.ScreenToWorldPoint(new Vector3(0, 400, 0)).y;
+        // Find all LocalLevelManagers in the scene.
+        levelManagers = FindObjectsOfType<LocalLevelManager>();
 
-        for (int i = 1; i < mapColliders.Length; i++)
+        // Sort the levelManagers array based on currentLevel.
+        Array.Sort(levelManagers, (lm1, lm2) => lm1.levelNumber.CompareTo(lm2.levelNumber));
+
+        // Get the GridMovement component from the GameObject.
+        gridMovement = GetComponent<GridMovement>();
+        if (gridMovement == null)
         {
-            mapColliders[i].enabled = false;
+            Debug.LogError("GridMovement component not found.");
+        }
+
+        // Initialize the first level.
+        ActivateLevel(levelManagers[0].levelNumber);
+    }
+
+    private void ActivateLevel(int levelIndex)
+    {
+        // Activate the new level.
+        if (levelIndex >= 0 && levelIndex < levelManagers.Length)
+        {
+            Debug.Log(levelManagers[levelIndex]);
+            currentLevel = levelIndex;
+
+            // Update the moveHazards boolean based on the active level.
+            moveHazards = levelManagers[levelIndex].moveHazards;
+
+            // Set the movement type for the GridMovement based on the active level.
+            gridMovement.SetMovementType(levelManagers[levelIndex].movementDirection);
+            if (levelManagers[levelIndex].movementDirection == LocalLevelManager.MovementDirection.Vertical) { moveVertical = true; } else { moveVertical = false; }
+            if (levelManagers[levelIndex].movementDirection == LocalLevelManager.MovementDirection.Horizontal) { moveHorizontal = true; } else { moveHorizontal = false; }
+
+            // Print the information you requested.
+            Debug.Log("Level Index: " + levelIndex);
+            Debug.Log("Movement Direction: " + levelManagers[levelIndex].movementDirection);
         }
     }
 
-    void FixedUpdate()
+    public void TransitionToNextLevel()
     {
-        if (mapColliders[^1].transform.position.x <= leftScreenEdge)
-        {
-            currentLevel = mapColliders.Length;
-            moveHazards = false;
-            moveGrid = false;
-            mapColliders[^1].enabled = true;
-            mapColliders[^2].enabled = false;
-        }
-
-        if (mapColliders[1].transform.position.x <= 0 && mapColliders[2].transform.position.x > 0) //forsaken city to old site
-        {
-            currentLevel = 1;
-            mapColliders[0].enabled = false;
-            mapColliders[1].enabled = true;
-        }
-
-        if (mapColliders[2].transform.position.x <= 0 && mapColliders[3].transform.position.x > 0) //old site to celestial resort
-        {
-            currentLevel = 2;
-            moveHazards = true;
-            mapColliders[1].enabled = false;
-            mapColliders[2].enabled = true;
-        }
-
-        if (mapColliders[3].transform.position.x <= leftScreenEdge)
-        {
-            currentLevel = 3;
-            moveHazards = true;
-            moveHorizontal = false;
-            moveVertical = true;
-            if (!hasBeenSetToVertical) 
-            {
-                GridMovement.scrollSpeed = new Vector3(0, GridMovement.baseScrollSpeedY);
-                hasBeenSetToVertical = true;
-            }
-            mapColliders[2].enabled = false;
-            mapColliders[3].enabled = true;
-        }
-
-        if (mapColliders[4].transform.position.y <= topScreenEdge)
-        {
-            if (hasBeenSetToVertical)
-            {
-                GridMovement.scrollSpeed = new Vector3(GridMovement.baseScrollSpeedX, 0);
-                hasBeenSetToVertical = false;
-            }
-            currentLevel = 4;
-            moveHazards = false;
-            moveHorizontal = true;
-            moveVertical = false;
-            mapColliders[3].enabled = false;
-            mapColliders[4].enabled = true;
-        }
-    }
-
-    private void OnDisable()
-    {
-        moveHazards = false;
-        moveVertical = false;
-        moveHorizontal = true;
-        hasBeenSetToVertical = false;
+        // Transition to the next level.
+        int nextLevelIndex = Array.IndexOf(levelManagers, levelManagers.FirstOrDefault(lm => lm.levelNumber == levelManagers[currentLevel].levelNumber)) + 1;
+        ActivateLevel(nextLevelIndex);
     }
 }
+

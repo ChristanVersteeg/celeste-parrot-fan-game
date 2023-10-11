@@ -14,7 +14,7 @@ public class DisplayStats : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!LevelManager.moveGrid)
+        if ((!LevelManager.moveVertical && !LevelManager.moveHorizontal))
         {
             totalStrawberries = PlayerPrefs.GetInt("totalStrawberries", 0);
 

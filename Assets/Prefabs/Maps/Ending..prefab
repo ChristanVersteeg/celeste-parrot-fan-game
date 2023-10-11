@@ -2785,6 +2785,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   statsText: {fileID: 430485222323984880}
+--- !u!1 &2798543645362846712
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 995531096187983854}
+  m_Layer: 0
+  m_Name: Level End
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &995531096187983854
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2798543645362846712}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 15, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2828775305732726214}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3035057498400759257
 GameObject:
   m_ObjectHideFlags: 0
@@ -58259,6 +58290,37 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &7548033316995733636
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7782471087115233857}
+  m_Layer: 0
+  m_Name: Level Start
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7782471087115233857
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7548033316995733636}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.88116735, y: 2.0272005, z: 1.2157478}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2828775305732726214}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8118305356257506395
 GameObject:
   m_ObjectHideFlags: 0
@@ -58269,6 +58331,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2828775305732726214}
   - component: {fileID: 765181660967104424}
+  - component: {fileID: 4855441827273436051}
   m_Layer: 0
   m_Name: Ending.
   m_TagString: Untagged
@@ -58312,6 +58375,8 @@ Transform:
   - {fileID: 8666210672241456949}
   - {fileID: 4701290236963735072}
   - {fileID: 2968575793024662036}
+  - {fileID: 7782471087115233857}
+  - {fileID: 995531096187983854}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &765181660967104424
@@ -58321,11 +58386,29 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8118305356257506395}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aba9159cc1a105e4a98604e48656151d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4855441827273436051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8118305356257506395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92df0be2bccbf2948bf48deff5e6eb4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementDirection: 2
+  moveHazards: 0
+  levelNumber: 5
+  levelStartObject: {fileID: 7548033316995733636}
+  levelEndObject: {fileID: 2798543645362846712}
+  mapCollider: {fileID: 6559852602970089017}
 --- !u!1001 &644336108222976707
 PrefabInstance:
   m_ObjectHideFlags: 0

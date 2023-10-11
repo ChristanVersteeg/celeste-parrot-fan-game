@@ -11,14 +11,26 @@ public class GridMovement : MonoBehaviour
         scrollSpeed = new(baseScrollSpeedX, 0, 0);
     }
 
-    private void FixedUpdate()
+    public void SetMovementType(LocalLevelManager.MovementDirection movementType)
     {
-        if (!LevelManager.moveGrid) return;
-        transform.position += scrollSpeed;
+        Debug.Log(movementType);
+        switch (movementType)
+        {
+            case LocalLevelManager.MovementDirection.Horizontal:
+                scrollSpeed = new Vector3(baseScrollSpeedX, 0, 0);
+                break;
+            case LocalLevelManager.MovementDirection.Vertical:
+                scrollSpeed = new Vector3(0, baseScrollSpeedY, 0);
+                break;
+            case LocalLevelManager.MovementDirection.NoMovement:
+                scrollSpeed = Vector3.zero;
+                break;
+        }
     }
 
-    private void OnDisable()
+    private void FixedUpdate()
     {
-        LevelManager.moveGrid = true;
+        // Move the grid based on the adjusted scrollSpeed.
+        transform.position += scrollSpeed;
     }
 }
