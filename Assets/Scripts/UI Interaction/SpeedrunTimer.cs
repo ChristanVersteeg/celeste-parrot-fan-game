@@ -19,11 +19,11 @@ public class SpeedrunTimer : MonoBehaviour
 
     void Update()
     {
-        TimeSpan currentTimeSpan = TimeSpan.FromSeconds(Time.timeSinceLevelLoad);
+        TimeSpan currentTimeSpan = TimeSpan.FromSeconds(time + Time.timeSinceLevelLoad);
         string currentTimeText = $"{currentTimeSpan.Hours}:{currentTimeSpan.Minutes:00}:{currentTimeSpan.Seconds:00}<size=80%><color=#808080>.{currentTimeSpan.Milliseconds:000}</color></size>";
         currentTime.text = currentTimeText;
 
-        TimeSpan overallTimeSpan = TimeSpan.FromSeconds(time + Time.timeSinceLevelLoad);
+        TimeSpan overallTimeSpan = TimeSpan.FromSeconds(Time.timeSinceLevelLoad);
         string overallTimeText = $"{overallTimeSpan.Minutes:00}:{overallTimeSpan.Seconds:00}";
         overallTime.text = overallTimeText;
     }
