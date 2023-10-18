@@ -77,6 +77,7 @@ public class Movement : MonoBehaviour
 
     private void ResetDashSpeed()
     {
+        SoundManager.speedUp = false;
         SetScrollSpeeds(GridMovement.baseScrollSpeedX, GridMovement.baseScrollSpeedY);
     }
 
@@ -86,13 +87,14 @@ public class Movement : MonoBehaviour
         if (!updateDash) return;
         if (!Input.GetKeyDown(KeyCode.Space)) return;
         if (dash == 0)
-        {
+        {           
             dashObj.SetActive(false);
             return;
         }
 
         SetScrollSpeeds(dashSpeed, dashSpeed / 2);
 
+        SoundManager.speedUp = true;
         dash--;
 
         Invoke(nameof(ResetDashSpeed), 3);

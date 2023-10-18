@@ -7,6 +7,7 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioClip[] audioClips;
     public AudioSource audioSource;
     private int currentClipIndex = 0;
+    public static bool speedUp = false;
 
     private void Start()
     {
@@ -20,11 +21,32 @@ public class SoundManager : MonoBehaviour
         {
             // Switch to the next audio clip
             SwitchToNextClip();
-        }       
+        }
         else if (!audioSource.isPlaying)  // Check if the current audio clip has finished playing
         {
             // Loop the currently playing audio clip
             LoopCurrentClip();
+        }
+
+        if (speedUp && LevelManager.moveHorizontal)
+        {
+            audioSource.pitch = 1.75f;
+        }
+        else if (speedUp && LevelManager.moveVertical)
+        {
+            audioSource.pitch = 1;
+        }
+        else if (LevelManager.moveHorizontal)
+        {
+            audioSource.pitch = 1;
+        }
+        else if (LevelManager.moveVertical)
+        {
+            audioSource.pitch = 0.875f;
+        }
+        else
+        {
+            audioSource.pitch = 1;
         }
     }
 
