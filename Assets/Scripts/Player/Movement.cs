@@ -15,6 +15,7 @@ public class Movement : MonoBehaviour
     private float dashSpeed = -0.175f;
     GameObject dashObj;
     private bool updateDash;
+    private ParticleSystem featherParticles;
 
     private void StartUpdatingDash() => updateDash = true;
 
@@ -27,6 +28,7 @@ public class Movement : MonoBehaviour
         dashObj = transform.GetChild(1).gameObject;
         dashObj.SetActive(dash != 0);
         rb = GetComponent<Rigidbody2D>();
+        featherParticles = GetComponent<ParticleSystem>();
         activeScene = SceneManager.GetActiveScene().buildIndex;
         speed = (int)(activeScene != 1 ? speed / 2.5f : speed);
     }
@@ -78,6 +80,7 @@ public class Movement : MonoBehaviour
     private void ResetDashSpeed()
     {
         SoundManager.speedUp = false;
+        featherParticles.Stop();
         SetScrollSpeeds(GridMovement.baseScrollSpeedX, GridMovement.baseScrollSpeedY);
     }
 
@@ -87,13 +90,14 @@ public class Movement : MonoBehaviour
         if (!updateDash) return;
         if (!Input.GetKeyDown(KeyCode.Space)) return;
         if (dash == 0)
-        {           
+        {
             dashObj.SetActive(false);
             return;
         }
 
         SetScrollSpeeds(dashSpeed, dashSpeed / 2);
 
+        featherParticles.Play();
         SoundManager.speedUp = true;
         dash--;
 
@@ -119,5 +123,33 @@ public class Movement : MonoBehaviour
 
         if (canMove)
             rb.velocity = direction * (0.75f / Time.fixedDeltaTime);
+
+        ParticleSystem.ShapeModule shapeModule = featherParticles.shape;
+        ParticleSystem.VelocityOverLifetimeModule velocityModule = featherParticles.velocityOverLifetime;
+
+        if (LevelManager.moveHorizontal)
+        {
+            shapeModule.rotation = new Vector3(0.0f, -90, 0.0f);
+            if (SoundManager.speedUp)
+            {
+                velocityModule.x = -5; velocityModule.y = 0;
+            }
+            else
+            {
+                velocityModule.x = -2.5f; velocityModule.x = 0;
+            }
+        }
+        else if (LevelManager.moveVertical)
+        {
+            shapeModule.rotation = new Vector3(90.0f, 0.0f, 0.0f);
+            if (SoundManager.speedUp)
+            {
+                velocityModule.y = -2.5f; velocityModule.x = 0;
+            }
+            else
+            {
+                velocityModule.y = -1.25f; velocityModule.x = 0;
+            }
+        }
     }
 }
