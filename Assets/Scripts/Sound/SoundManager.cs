@@ -6,11 +6,13 @@ public class SoundManager : MonoBehaviour
 {
     [SerializeField] private AudioClip[] audioClips;
     public AudioSource audioSource;
+    public static AudioSource oneshotPlayer;
     private int currentClipIndex = 0;
     public static bool speedUp = false;
 
     private void Start()
     {
+        oneshotPlayer = transform.GetComponents<AudioSource>()[1];
         // Set up the first audio clip to play
         PlayAudioClip(currentClipIndex);
     }
@@ -48,6 +50,11 @@ public class SoundManager : MonoBehaviour
         {
             audioSource.pitch = 1;
         }
+    }
+
+    public static void PlayOneShot(AudioClip oneShotClip)
+    {
+        oneshotPlayer.PlayOneShot(oneShotClip);
     }
 
     private void PlayAudioClip(int index)
