@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4504692205714968135}
   - component: {fileID: 4802642620260751859}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Birb Speed Halo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6425894348011485372}
   - component: {fileID: 3710320896695377402}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Birb Halo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -187,7 +187,7 @@ GameObject:
   - component: {fileID: 5072663348699699028}
   - component: {fileID: 6266795091687626656}
   - component: {fileID: 4888534420557042289}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}

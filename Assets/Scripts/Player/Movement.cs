@@ -113,10 +113,10 @@ public class Movement : MonoBehaviour
     {
         direction = zero;
 
-        Move(W, UpArrow, up);
-        Move(A, LeftArrow, left);
-        Move(S, DownArrow, down);
-        Move(D, RightArrow, right);
+        Move(W, Keypad8, up);
+        Move(A, Keypad4, left);
+        Move(S, Keypad2, down);
+        Move(D, Keypad6, right);
 
         if (direction.magnitude > 1)
             direction.Normalize();

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7620781570178158292}
   - component: {fileID: 3128098370450778468}
   - component: {fileID: 3480975950852127786}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FarewellObstacles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
