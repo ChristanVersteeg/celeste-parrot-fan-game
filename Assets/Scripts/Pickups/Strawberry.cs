@@ -5,7 +5,7 @@ public class Strawberry : MonoBehaviour
 {
     public static int count;
     [HideInInspector] public int incrementor = 1;
-    private new AudioSource audio;
+    public new AudioClip audio;
     private Animator animator;
     private bool started;
     new string Destroy = nameof(Destroy);
@@ -13,9 +13,7 @@ public class Strawberry : MonoBehaviour
     protected virtual void Start()
     {
         name = gameObject.name;
-        audio = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
-        audio.volume = 0.1f;
     }
 
     private IEnumerator HandleCollision()
@@ -24,15 +22,16 @@ public class Strawberry : MonoBehaviour
 
         count += incrementor;
         PlayerPrefs.SetInt("totalStrawberries", PlayerPrefs.GetInt("totalStrawberries") + incrementor);
-        audio.Play();
+        SoundManager.PlayOneShot(audio);
 
         started = true;
+
 
         animator.SetBool("Destroy", true);
 
         GetComponent<BoxCollider2D>().enabled = false;
 
-        yield return new WaitWhile(() => audio.isPlaying);
+        yield return new WaitWhile(() => SoundManager.oneshotPlayer.isPlaying);
         Destroy(gameObject);
     }
 
