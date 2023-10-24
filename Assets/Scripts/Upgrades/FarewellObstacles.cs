@@ -20,11 +20,6 @@ public class FarewellObstacles : MonoBehaviour
         
         Rigidbody2D rb = Instantiate(farewellPrefab, transform.position, rotation).GetComponent<Rigidbody2D>();
         rb.AddForce(direction * speed, ForceMode2D.Impulse);
-        //Yes this is inneficient and I should just put it in a seperate layer and turn of that specific layer
-        //Do I care?
-        //No.
-        //Not my problem.
-        Physics2D.IgnoreCollision(rb.GetComponent<Collider2D>(), GetComponent<Collider2D>(), true);
         farewell--;
     }
 
