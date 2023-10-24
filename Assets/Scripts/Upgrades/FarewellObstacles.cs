@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using static UnityEngine.KeyCode;
 using static UnityEngine.Vector3;
@@ -6,6 +7,8 @@ public class FarewellObstacles : MonoBehaviour
 {
     private int farewell;
     private int speed = 10;
+    public static Action<Vector3> OnInstantiate;    
+
     [SerializeField] private GameObject farewellPrefab;
     private void Start()
     {
@@ -18,8 +21,8 @@ public class FarewellObstacles : MonoBehaviour
         if (!Input.GetKeyDown(key)) return;
         if (farewell == 0) return;
         
-        Rigidbody2D rb = Instantiate(farewellPrefab, transform.position, rotation).GetComponent<Rigidbody2D>();
-        rb.AddForce(direction * speed, ForceMode2D.Impulse);
+        Instantiate(farewellPrefab, transform.position, rotation);
+        OnInstantiate(direction);
         farewell--;
     }
 
