@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8151363173912107357}
   - component: {fileID: 7620781570178158292}
   - component: {fileID: 3128098370450778468}
+  - component: {fileID: 3480975950852127786}
   m_Layer: 0
   m_Name: FarewellObstacles
   m_TagString: Untagged
@@ -148,3 +149,15 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &3480975950852127786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 130629818904100839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3d47ff1f2ca1374795dd75f156f4dc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -11,10 +11,11 @@ public class Farewell : MonoBehaviour
         if (tilemap != null)
         {
             // Convert world point to cell position
-            Vector3Int cellPosition = tilemap.WorldToCell(collision.contacts[0].point);
-
-            // Erase the tile at the given cell position
-            tilemap.SetTile(cellPosition, null);
+            for (int i = 0; i < collision.contacts.Length; i++)
+            {
+                Vector3Int cellPosition = tilemap.WorldToCell(collision.contacts[i].point);
+                tilemap.SetTile(cellPosition, null);
+            }
         }
     }
 }

@@ -38,7 +38,6 @@ public class LevelManager : MonoBehaviour
         // Activate the new level.
         if (levelIndex >= 0 && levelIndex < levelManagers.Length)
         {
-            Debug.Log(levelManagers[levelIndex]);
             currentLevel = levelIndex;
 
             // Update the moveHazards boolean based on the active level.
@@ -50,8 +49,6 @@ public class LevelManager : MonoBehaviour
             if (levelManagers[levelIndex].movementDirection == LocalLevelManager.MovementDirection.Horizontal) { moveHorizontal = true; } else { moveHorizontal = false; }
 
             // Print the information you requested.
-            Debug.Log("Level Index: " + levelIndex);
-            Debug.Log("Movement Direction: " + levelManagers[levelIndex].movementDirection);
         }
     }
 

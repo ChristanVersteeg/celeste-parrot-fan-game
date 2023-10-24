@@ -13,7 +13,6 @@ public class GridMovement : MonoBehaviour
 
     public void SetMovementType(LocalLevelManager.MovementDirection movementType)
     {
-        Debug.Log(movementType);
         switch (movementType)
         {
             case LocalLevelManager.MovementDirection.Horizontal:
